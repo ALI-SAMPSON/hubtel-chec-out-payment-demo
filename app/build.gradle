@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.google_pay_demo"
+        /* Google Payment API is not supported in SDK versions lower than 19. This example requires
+        this version due to use of newer constructs like Optional. */
+        minSdkVersion 19
+        targetSdkVersion 29
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //MultiDex Library
+    implementation 'androidx.multidex:multidex:2.0.1'
+    //MultiDex support Library
+    implementation 'com.android.support:multidex:1.0.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    /* "play-services-wallet" is the only module needed for the Google Pay API and this sample app
+    but the "play-services" module can also be used.
+    The version provided is the minimum version required for the most recent major version of the
+    Google Pay API library. Your app may choose a dependency greater than the value below.
+    See https://developers.google.com/pay/api/android/guides/setup#dependencies for more info.
+    */
+    implementation 'com.google.android.gms:play-services-wallet:18.0.0'
+
+    // HubTel sdk
+    implementation 'com.github.deluakin:hubtel-online-checkout:v1.4'
+}
